@@ -1,26 +1,19 @@
-// src/routes.js
+import { createRoutesFromElements, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Movie from "./pages/Movie";
 import Directors from "./pages/Directors";
 import Actors from "./pages/Actors";
-import ErrorPage from './pages/ErrorPage'
+import Movie from "./pages/Movie";
+import ErrorPage from "./pages/ErrorPage";
+import Layout from "./pages/Layout";
 
-export const routes = [
-  {
-    path: "/",
-    element: <Home />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/movie/:id",
-    element: <Movie />,
-  },
-  {
-    path: "/directors",
-    element: <Directors />,
-  },
-  {
-    path: "/actors",
-    element: <Actors />,
-  },
-];
+const routes = createRoutesFromElements(
+  <Route path="/" element={<Layout />}>
+    <Route index element={<Home />} />
+    <Route path="actors" element={<Actors />} />
+    <Route path="directors" element={<Directors />} />
+    <Route path="movie/:id" element={<Movie />} />
+    <Route path="*" element={<ErrorPage />} />
+  </Route>
+);
+
+export default routes;

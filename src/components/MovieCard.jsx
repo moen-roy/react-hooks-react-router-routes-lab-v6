@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-function MovieCard({ title, id }) {
+function MovieCard({ id, title }) {
   return (
     <article>
       <h2>{title}</h2>

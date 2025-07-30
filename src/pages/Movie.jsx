@@ -1,37 +1,30 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import NavBar from "../components/NavBar";
-import { routes } from "../routes";
 
-function Movie() {
+const movieDetails = {
+  1: {
+    title: "Doctor Strange",
+    time: "115",
+    genres: ["Action", "Adventure", "Fantasy"],
+  },
+};
+
+export default function MoviePage() {
   const { id } = useParams();
-  const [movie, setMovie] = useState(null);
+  const movie = movieDetails[id];
 
-  useEffect(() => {
-    fetch("/movies")
-      .then((res) => res.json())
-      .then((movies) => {
-        const found = movies.find((m) => m.id.toString() === id);
-        setMovie(found);
-      });
-  }, [id]);
-
-  if (!movie) return <p>Loading...</p>;
+  if (!movie) return <h1>Oops! Movie not found.</h1>;
 
   return (
-    <>
-      <header>
-        <NavBar />
-      </header>
-      <main>
-        <h1>{movie.title}</h1>
-        <p>{movie.time}</p>
-        {movie.genres.map((g, i) => (
-          <span key={i}>{g}</span>
-        ))}
-      </main>
-    </>
+    <div>
+      <h1>{movie.title}</h1>
+      <p>{movie.time}</p>
+      
+      {movie.genres.map((genre) => (
+        <span key={`first-${genre}`}>{genre}</span>
+      ))}
+      {movie.genres.map((genre) => (
+        <span key={`second-${genre}`}>{genre}</span>
+      ))}
+    </div>
   );
 }
-
-export default Movie;

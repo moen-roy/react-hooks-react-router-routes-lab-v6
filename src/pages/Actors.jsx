@@ -1,6 +1,4 @@
-import React from "react";
-
-const actors = [  // You can define here or fetch from props
+const actors = [
   {
     name: "Benedict Cumberbatch",
     movies: ["Doctor Strange", "The Imitation Game", "Black Mass"],
@@ -23,7 +21,7 @@ const actors = [  // You can define here or fetch from props
   },
 ];
 
-function Actors() {
+export default function ActorsPage() {
   return (
     <div>
       <h1>Actors Page</h1>
@@ -40,5 +38,3 @@ function Actors() {
     </div>
   );
 }
-
-export default Actors;

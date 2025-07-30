@@ -1,31 +1,22 @@
-import { useEffect, useState } from "react";
-import { routes } from "../routes";
+import { Link } from "react-router-dom";
 
-import NavBar from "../components/NavBar";
-import MovieCard from "../components/MovieCard";
+const movies = [
+  { id: 1, title: "Doctor Strange" },
+  { id: 2, title: "Trolls" },
+  { id: 3, title: "Jack Reacher: Never Go Back" },
+  { id: 4, title: "Pitch Perfect" },
+];
 
-function Home() {
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    fetch("/movies")
-      .then((res) => res.json())
-      .then(setMovies);
-  }, []);
-
+export default function HomePage() {
   return (
-    <>
-      <header>
-        <NavBar />
-      </header>
-      <main>
-        <h1>Home Page</h1>
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} title={movie.title} id={movie.id} />
-        ))}
-      </main>
-    </>
+    <div>
+      <h1>Home Page</h1>
+      {movies.map((movie) => (
+        <div key={movie.id}>
+          <h2>{movie.title}</h2>
+          <Link to={`/movie/${movie.id}`}>View Info</Link>
+        </div>
+      ))}
+    </div>
   );
 }
-
-export default Home;
